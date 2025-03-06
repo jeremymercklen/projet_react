@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Like } from "./types";
 import { createLikeInAPI, deleteLikeInAPI, getLikesInAPI } from "./service";
-import { getIdWithToken } from "../auth/service";
+import { getIdWithToken, getToken } from "../auth/service";
 
 export const createLike = createAsyncThunk('likes/createLike', async (tweetId: number) => {
-    return await createLikeInAPI(tweetId, getIdWithToken(localStorage.getItem('accessToken')!));
+    return await createLikeInAPI(tweetId, getIdWithToken(getToken()));
 });
 
 export const deleteLike = createAsyncThunk('likes/deleteLike', async({likes, tweetId}: {likes: Like[], tweetId: number}) => {
-    const userId : number = getIdWithToken(localStorage.getItem('accessToken')!);
+    const userId : number = getIdWithToken(getToken());
     const like = likes.find( (like) => like.tweetId === tweetId && like.userId === userId);
     await deleteLikeInAPI(like!.id);
     return like!.id;

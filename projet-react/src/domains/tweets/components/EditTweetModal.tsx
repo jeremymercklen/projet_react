@@ -13,15 +13,19 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
+    width: '90%',
+    maxWidth: 500,
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    borderRadius: 3,
     boxShadow: 24,
-    p: 4,
+    p: 3,
+    '@media (max-width: 600px)': {
+        width: '95%', // Sur mobile, plus large
+    },
 };
 
 interface TweetProps {
-    tweet: Tweet
+    tweet: Tweet;
 }
 
 const EditTweetModal: React.FC<TweetProps> = ({ tweet }) => {
@@ -33,7 +37,23 @@ const EditTweetModal: React.FC<TweetProps> = ({ tweet }) => {
 
     return (
         <Fragment>
-            <Button onClick={handleOpen}><FaEdit /></Button>
+            <Button
+                onClick={handleOpen}
+                variant="outlined"
+                color="primary"
+                size="large"
+                sx={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1,
+                    borderRadius: '20px',
+                    '&:hover': {
+                        backgroundColor: 'rgba(29, 161, 242, 0.1)',
+                    },
+                }}
+            >
+                <FaEdit />
+            </Button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -41,22 +61,54 @@ const EditTweetModal: React.FC<TweetProps> = ({ tweet }) => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <form onSubmit={(e) => {
-                        e.preventDefault();
-                        dispatch(editTweet({ tweetId: tweet.id, content }));
-                        handleClose();
-                    }}>
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            if (content.trim()) {
+                                dispatch(editTweet({ tweetId: tweet.id, content }));
+                                handleClose();
+                            }
+                        }}
+                    >
                         <TextField
                             value={content}
-                            onChange={(e) => setContent(e.target.value)} />
-                        <Button type='submit'>
-                            Edit
+                            onChange={(e) => setContent(e.target.value)}
+                            fullWidth
+                            multiline
+                            rows={4}
+                            variant="outlined"
+                            label="Edit your tweet"
+                            sx={{
+                                marginBottom: 2,
+                                '& .MuiOutlinedInput-root': {
+                                    borderRadius: '20px',
+                                },
+                                '& .MuiInputBase-root': {
+                                    fontSize: '1rem',
+                                },
+                            }}
+                        />
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            fullWidth
+                            sx={{
+                                borderRadius: '20px',
+                                padding: '10px',
+                                fontWeight: 600,
+                                '&:hover': {
+                                    backgroundColor: '#1DA1F2',
+                                },
+                            }}
+                        >
+                            Save Changes
                         </Button>
                     </form>
                 </Box>
             </Modal>
         </Fragment>
     );
-}
+};
 
 export default EditTweetModal;

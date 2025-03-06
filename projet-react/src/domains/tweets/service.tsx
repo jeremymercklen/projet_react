@@ -1,11 +1,11 @@
 import { toast } from "react-toastify";
 import tweetsAPIInstance from "./api";
 import { Tweet } from "./types";
-import { getIdWithToken } from "../auth/service";
+import { getIdWithToken, getToken } from "../auth/service";
 
 export async function createTweetInAPI(content: string): Promise<Tweet> {
     const tweet = {
-        userId: getIdWithToken(localStorage.getItem('accessToken')!),
+        userId: getIdWithToken(getToken()),
         content: content,
         creationTime: Date.now()
     };
@@ -23,7 +23,7 @@ export async function getTweetsOrderByDateInAPI(): Promise<Tweet[]> {
 }
 
 export async function editTweetInAPI(tweetId: number, content: string) {
-    const token = localStorage.getItem('accessToken');
+    const token = getToken();
     await tweetsAPIInstance.patch(`/600/tweets/${tweetId}`, {
         content: content
     }, {
@@ -34,7 +34,7 @@ export async function editTweetInAPI(tweetId: number, content: string) {
 }
 
 export async function deleteTweetInAPI(tweetId: number) {
-    const token = localStorage.getItem('accessToken');
+    const token = getToken();
     await tweetsAPIInstance.delete(`/600/tweets/${tweetId}`, {
         headers: {
             Authorization: `Bearer ${token}`
@@ -50,6 +50,6 @@ tweetsAPIInstance.interceptors.response.use(function (response) {
 });
 
 export function isTweetToUser(tweetUserId: number): boolean {
-    const userId = getIdWithToken(localStorage.getItem('accessToken')!)
+    const userId = getIdWithToken(getToken())
     return userId === tweetUserId;
 }

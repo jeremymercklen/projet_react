@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import DrawerResponsive from '../ui/DrawerResponsive';
 import { getUserEmailById } from '../domains/auth/service';
-import { Button, Typography } from '@mui/material';
+import { Button, Typography, Divider, IconButton, Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import { useAppDispatch, useAppSelector } from '../app/store';
 import { Tweet } from '../domains/tweets/types';
@@ -14,6 +14,7 @@ import { getNbFollowers, getNbFollowings, isSameUser } from '../domains/users/se
 import FollowButton from '../domains/users/components/FollowButton';
 import FollowersModal from '../domains/users/components/FollowersModal';
 import FollowingsModal from '../domains/users/components/FollowingsModal';
+import { FaCog } from 'react-icons/fa';
 
 function Profile() {
     const tweets: Tweet[] = useAppSelector((state: any) => state.tweets.tweets);
@@ -45,33 +46,76 @@ function Profile() {
         }
         dispatch(getTweetsOrderByDate());
         getUserEmail();
-    }, [])
+    }, [dispatch, id]);
 
     return (
         <DrawerResponsive>
             <DarkModeButton />
-            <Box sx={{ margin: 1 }}>
-                {
-                    isSameUser(Number(id)) ?
+            <Box sx={{
+                margin: 3,
+                padding: 3,
+                backgroundColor: 'background.paper',
+                borderRadius: '15px',
+                boxShadow: 3,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-start',
+            }}>
+                <Box sx={{
+                    width: '100%',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    flexDirection: { xs: 'column', sm: 'row' }, // Responsive layout
+                    gap: 2,
+                }}>
+                    <Typography variant="h4" sx={{ fontWeight: 600, textAlign: { xs: 'center', sm: 'left' } }}>{email}</Typography>
+                    {isSameUser(Number(id)) ? (
                         <Fragment>
                             <FollowersModal />
                             <FollowingsModal />
-                        </Fragment> :
-                        <Fragment>
-                            <FollowButton userId={Number(id)} incrementFollowers={incrementFollowers} decrementFollowers={decrementFollowers} />
-                            <Typography>{`followers : ${nbFollowers}`}</Typography>
-                            <Typography>{`followings: ${nbFollowings}`}</Typography>
                         </Fragment>
-                }
-                <Typography fontSize={25}>{email}</Typography>
-                {
-                    tweets.filter((tweet) => tweet.userId === Number(id)).map((tweet: Tweet, index) => (
-                        <TweetItem tweet={tweet} key={index} />
-                    ))
-                }
+                    ) : (
+                        <Fragment>
+                            <FollowButton
+                                userId={Number(id)}
+                                incrementFollowers={incrementFollowers}
+                                decrementFollowers={decrementFollowers}
+                            />
+                        </Fragment>
+                    )}
+                </Box>
+
+                <Divider sx={{ width: '100%', margin: '10px 0' }} />
+
+                <Box sx={{
+                    display: 'flex',
+                    flexDirection: { xs: 'column', sm: 'row' }, // Responsive layout for followers/following
+                    gap: 2,
+                    justifyContent: 'space-between',
+                    width: '100%',
+                }}>
+                    <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: { xs: 'center', sm: 'left' } }}>
+                        {`Followers: ${nbFollowers}`}
+                    </Typography>
+                    <Typography variant="body2" sx={{ color: 'text.secondary', textAlign: { xs: 'center', sm: 'left' } }}>
+                        {`Following: ${nbFollowings}`}
+                    </Typography>
+                </Box>
+
+                <Divider sx={{ width: '100%', margin: '20px 0' }} />
+
+                {/* Mapping and displaying user tweets */}
+                <Grid container spacing={3}>
+                    {tweets.filter((tweet) => tweet.userId === Number(id)).map((tweet, index) => (
+                        <Grid item xs={12} sm={6} md={4} key={index}> {/* Responsive grid for tweets */}
+                            <TweetItem tweet={tweet} />
+                        </Grid>
+                    ))}
+                </Grid>
             </Box>
         </DrawerResponsive>
-    )
+    );
 }
 
 export default AuthGuard(Profile);

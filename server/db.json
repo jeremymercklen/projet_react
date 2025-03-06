@@ -19,19 +19,35 @@
         13
       ],
       "followings": [
-        13,
-        5
+        5,
+        13
       ],
       "id": 12
     },
     {
       "email": "c@mail",
       "password": "$2a$10$eGtPkjQiGF1KNBYwqmG3g.tX8Jm19DhrNXbj0N/wsIZrpno6jvA/a",
-      "followers": [],
+      "followers": [
+        12
+      ],
       "followings": [
         12
       ],
       "id": 13
+    },
+    {
+      "email": "test@mail",
+      "password": "$2a$10$gY0.GDJQzEe.99e0OWnBRuZyDyeT2k2yMU4YtSfKzhsJ.KpclPr0e",
+      "followers": [],
+      "followings": [],
+      "id": 14
+    },
+    {
+      "email": "a@mail",
+      "password": "$2a$10$Dper1/PrOj8darHXyqP9EOdALmvNGM5MN066rE.tQJbASJ4rXcP8O",
+      "followers": [],
+      "followings": [],
+      "id": 15
     }
   ],
   "tweets": [
@@ -52,23 +68,29 @@
       "content": "test",
       "creationTime": 1741260918172,
       "id": 10
+    },
+    {
+      "userId": 12,
+      "content": "oe\n",
+      "creationTime": 1741285547514,
+      "id": 11
     }
   ],
   "likes": [
     {
-      "tweetId": 8,
-      "userId": 12,
-      "id": 3
-    },
-    {
-      "tweetId": 9,
-      "userId": 12,
-      "id": 4
-    },
-    {
       "tweetId": 9,
       "userId": 5,
       "id": 5
+    },
+    {
+      "tweetId": 9,
+      "userId": 12,
+      "id": 6
+    },
+    {
+      "tweetId": 8,
+      "userId": 12,
+      "id": 7
     }
   ]
 }

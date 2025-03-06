@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { getIsConnected } from './service';
+import { getIsConnected, getToken } from './service';
 import { setIsConnected } from './slice';
 
 const AlreadyAuthGuard = (WrappedComponent: any) => {
@@ -13,14 +13,16 @@ const AlreadyAuthGuard = (WrappedComponent: any) => {
         useEffect(() => {
             const getConnectionStatus = async () => {
                 var isAuth = false
-                if (localStorage.getItem('accessToken'))
+                if (getToken())
                     isAuth = await getIsConnected()
 
                 dispatch(setIsConnected(isAuth));
                 if (isAuth)
                     navigate('/');
-                else
-                    localStorage.removeItem('accessToken')
+                else {
+                    localStorage.removeItem('accessToken');
+                    sessionStorage.removeItem('accessToken');
+                }
             }
 
             getConnectionStatus();

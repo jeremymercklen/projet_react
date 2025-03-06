@@ -1,15 +1,15 @@
 import { toast } from "react-toastify";
-import { getIdWithToken } from "../auth/service";
+import { getIdWithToken, getToken } from "../auth/service";
 import usersAPIInstance from "./api";
 import { User } from "./types";
 
 export function isSameUser(userId: number) {
-    const currentUserId = getIdWithToken(localStorage.getItem('accessToken')!)
+    const currentUserId = getIdWithToken(getToken())
     return userId === currentUserId;
 }
 
 export async function createFollower(followedUserId: number) {
-     const followingUserId = getIdWithToken(localStorage.getItem("accessToken")!);
+     const followingUserId = getIdWithToken(getToken());
 
      let followedUser: User = await usersAPIInstance.get(`/users/${followedUserId}`)
      let followingUser: User = await usersAPIInstance.get(`/users/${followingUserId}`)
@@ -22,7 +22,7 @@ export async function createFollower(followedUserId: number) {
 }
 
 export async function deleteFollower(followedUserId: number) {
-    const followingUserId = getIdWithToken(localStorage.getItem("accessToken")!);
+    const followingUserId = getIdWithToken(getToken());
     
     let followedUser: User = await usersAPIInstance.get(`/users/${followedUserId}`)
     let followingUser: User = await usersAPIInstance.get(`/users/${followingUserId}`)
@@ -35,26 +35,26 @@ export async function deleteFollower(followedUserId: number) {
 }
 
 export async function isFollowing(followedUserId: number) {
-    const followingUserId = getIdWithToken(localStorage.getItem("accessToken")!);
+    const followingUserId = getIdWithToken(getToken());
     const followingUser: User = await usersAPIInstance.get(`/users/${followingUserId}`);
     const id = followingUser.followings.find((id) => id === followedUserId);
     return Boolean(id);
 }
 
 export async function getFollowers() {
-    const currentUserId = getIdWithToken(localStorage.getItem("accessToken")!);
+    const currentUserId = getIdWithToken(getToken());
     const user: User =  await usersAPIInstance.get(`/users/${currentUserId}`)
     return user.followers;
 }
 
 export async function getFollowings() {
-    const currentUserId = getIdWithToken(localStorage.getItem("accessToken")!);
+    const currentUserId = getIdWithToken(getToken());
     const user: User =  await usersAPIInstance.get(`/users/${currentUserId}`)
     return user.followings;
 }
 
 export async function getNbFollowers(userId: number) {
-    const currentUserId = getIdWithToken(localStorage.getItem("accessToken")!);
+    const currentUserId = getIdWithToken(getToken());
     const user: User =  await usersAPIInstance.get(`/users/${userId}`)
     return user.followers.length;
 }

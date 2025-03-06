@@ -1,7 +1,7 @@
 import { toast } from "react-toastify";
 import likesAPIInstance from "./api";
 import { Like } from "./types";
-import { getIdWithToken } from "../auth/service";
+import { getIdWithToken, getToken } from "../auth/service";
 
 export async function getLikesInAPI(): Promise<Like[]> {
     return await likesAPIInstance.get('/likes');
@@ -26,7 +26,7 @@ likesAPIInstance.interceptors.response.use(function (response) {
 });
 
 export function getIfTweetIsLiked(likes: Like[], tweetId: number) {
-    const userId  = getIdWithToken(localStorage.getItem('accessToken')!);
+    const userId  = getIdWithToken(getToken());
     const like = likes.find( (like) => like.tweetId === tweetId && like.userId === userId);
     return Boolean(like);
 };
