@@ -34,8 +34,8 @@ function FollowersModal() {
 
     return (
         <div>
-            <Button onClick={handleOpen} variant='text' size='large'>
-                {`followers: ${followers.length}`}
+            <Button onClick={handleOpen} variant='text' size='large' sx={{ textTransform: 'none' }}>
+                {`Followers: ${followers.length}`}
             </Button>
             <Modal
                 open={open}

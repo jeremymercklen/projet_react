@@ -34,8 +34,9 @@ function FollowingsModal() {
 
     return (
         <div>
-            <Button onClick={handleOpen} variant='text' size='large'>
-                {`followings: ${followings.length}`}</Button>
+            <Button onClick={handleOpen} variant='text' size='large' sx={{ textTransform: 'none' }}>
+                {`Followings: ${followings.length}`}
+            </Button>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -45,9 +46,11 @@ function FollowingsModal() {
                 <Box sx={style}>
                     {
                         followings.map((followId: number, index) => (
-                            <Button key={index} variant='text' onClick={() => navigate(`/profile/${followId}`)}>
-                                {getUserEmailById(followId)}
-                            </Button>
+                            <div>
+                                <Button key={index} variant='text' onClick={() => navigate(`/profile/${followId}`)}>
+                                    {getUserEmailById(followId)}
+                                </Button>
+                            </div>
                         ))
                     }
                 </Box>
