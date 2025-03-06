@@ -14,16 +14,18 @@ export async function login(email : string, password : string) {
 export async function signup(email : string, password : string) {
     const response : AuthSignupResponse = await authAPIInstance.post('/signup', {
         email,
-        password
+        password,
+        followers: [],
+        followings: []
     })
     localStorage.setItem("accessToken", response.accessToken);
 }
 
-export function getIdWithToken(accessToken : string)  {
+export function getIdWithToken(accessToken : string) : number {
     const payloadBase64 = accessToken.split('.')[1];
     const decodedPayload = atob(payloadBase64);
     const payload = JSON.parse(decodedPayload);
-    return payload.sub 
+    return parseInt(payload.sub)
 }
 
 export async function getIsConnected() : Promise<boolean> {
@@ -50,6 +52,7 @@ export const getUserEmailById = async (id: number) => {
 authAPIInstance.interceptors.response.use(function (response) {
     return response.data;
 }, function (error) {
+    
     toast.error(error.response.data);
     throw error;
 });

@@ -19,7 +19,6 @@ export async function createTweetInAPI(content: string): Promise<Tweet> {
 
 export async function getTweetsOrderByDateInAPI(): Promise<Tweet[]> {
     const response: Tweet[] = await tweetsAPIInstance.get('/tweets', { params: { _sort: "creationTime", _order: 'desc' } });
-    console.log('response', response)
     return response;
 }
 
@@ -49,3 +48,8 @@ tweetsAPIInstance.interceptors.response.use(function (response) {
     toast.error(error.response.data);
     throw error;
 });
+
+export function isTweetToUser(tweetUserId: number): boolean {
+    const userId = getIdWithToken(localStorage.getItem('accessToken')!)
+    return userId === tweetUserId;
+}

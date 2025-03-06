@@ -1,6 +1,8 @@
 export type AuthLoginResponse = {
     accessToken: string,
     email: string,
+    followers: number[],
+    followings: number[],
     id: number
 }
 

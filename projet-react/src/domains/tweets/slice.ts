@@ -26,10 +26,6 @@ const tweetsSlice = createSlice({
     reducers : {
         setTweets: (state, action) : void => {
             state.tweets = action.payload
-        },
-        deleteTweet: (state, action) : void => {
-            setTweets(state.tweets.filter((tweet) => tweet.id === action.payload.id));
-            deleteTweetInAPI(action.payload.id);
         }
     },
     extraReducers: (builder) => {

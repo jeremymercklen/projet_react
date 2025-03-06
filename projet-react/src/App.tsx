@@ -5,6 +5,7 @@ import Signup from "./pages/Signup"
 import { createTheme, CssBaseline, ThemeProvider } from "@mui/material"
 import { darkThemeOptions, lightThemeOptions } from "./ui/theme"
 import { useSelector } from "react-redux"
+import Profile from "./pages/Profile"
 
 const lightTheme = createTheme(lightThemeOptions);
 const darkTheme = createTheme(darkThemeOptions);
@@ -19,6 +20,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/profile/:id" element={<Profile />} />
         </Routes>
       </CssBaseline>
     </ThemeProvider>

@@ -1,7 +1,7 @@
 import { Drawer, Divider, IconButton, List, ListItemButton, Toolbar, useMediaQuery, useTheme, Box } from '@mui/material'
 import { Fragment, useState } from 'react'
 import { FaBell, FaHome, FaList, FaPowerOff, FaUser } from 'react-icons/fa'
-import { disconnect } from '../domains/auth/service'
+import { disconnect, getIdWithToken } from '../domains/auth/service'
 import { useNavigate } from 'react-router-dom';
 
 function DrawerResponsive({ children }: any) {
@@ -50,7 +50,7 @@ function DrawerResponsive({ children }: any) {
 
                         <List>
                             <ListItemButton onClick={() => navigate('/')}><FaHome />Home</ListItemButton>
-                            <ListItemButton><FaUser />Profile</ListItemButton>
+                            <ListItemButton onClick={() => navigate(`/profile/${getIdWithToken(localStorage.getItem("accessToken")!)}`)}><FaUser />Profile</ListItemButton>
                             <ListItemButton><FaBell />Notification</ListItemButton>
                         </List>
                         <Divider />
