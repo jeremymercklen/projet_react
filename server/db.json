@@ -3,16 +3,35 @@
     {
       "email": "b@mail",
       "password": "$2a$10$p965gvOxuqu.WUNh93BygO5U926eq8eNYO1.NbEBckmKPStRXR0au",
-      "followers": [],
-      "followings": [],
+      "followers": [
+        12
+      ],
+      "followings": [
+        12
+      ],
       "id": 5
     },
     {
       "email": "a@maill",
       "password": "$2a$10$aMTHGRqBDfx1eBKHPqbsc.IjRmDjmqW/oKHG84Q4J.cgnrg68kDmi",
-      "followers": [],
-      "followings": [],
+      "followers": [
+        5,
+        13
+      ],
+      "followings": [
+        13,
+        5
+      ],
       "id": 12
+    },
+    {
+      "email": "c@mail",
+      "password": "$2a$10$eGtPkjQiGF1KNBYwqmG3g.tX8Jm19DhrNXbj0N/wsIZrpno6jvA/a",
+      "followers": [],
+      "followings": [
+        12
+      ],
+      "id": 13
     }
   ],
   "tweets": [
