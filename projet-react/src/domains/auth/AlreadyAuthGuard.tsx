@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { getIsConnected } from './service';
 import { setIsConnected } from './slice';
 
-const AuthGuard = (WrappedComponent: any) => {
+const AlreadyAuthGuard = (WrappedComponent: any) => {
     const Auth = (props: any) => {
         const dispatch = useDispatch();
         const isConnected: boolean = useSelector((state: any) => state.connection.isConnected)
@@ -17,18 +17,18 @@ const AuthGuard = (WrappedComponent: any) => {
                     isAuth = await getIsConnected()
 
                 dispatch(setIsConnected(isAuth));
-                if (!isAuth) {
-                    localStorage.removeItem("accessToken");
-                    navigate('/login');
-                }
+                if (isAuth)
+                    navigate('/');
+                else
+                    localStorage.removeItem('accessToken')
             }
 
             getConnectionStatus();
         }, [])
 
-        return isConnected ? <WrappedComponent {...props} /> : null;
+        return !isConnected ? <WrappedComponent {...props} /> : null;
     };
     return Auth;
 }
 
-export default AuthGuard;
+export default AlreadyAuthGuard;

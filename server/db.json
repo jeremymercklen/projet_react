@@ -9,6 +9,83 @@
       "email": "b@mail.com",
       "password": "$2a$10$Fvq6v1.urJqHveDVQsnJSugFY3acKqo8VzG5GwK4ZqasmxKa2K2DC",
       "id": 2
+    },
+    {
+      "email": "c@mail.com",
+      "password": "$2a$10$HzfWsUM1QEBW20gYyhjdGulErZRBUyw2FQzrxFlO3VBJF7oqXDa16",
+      "id": 3
+    },
+    {
+      "email": "a@mail",
+      "password": "$2a$10$cQgfPQ8zz5HHYl9VNfDIUe.s7VIIHivmuZZkm.EWfsbTiyZNp2gkm",
+      "id": 4
+    },
+    {
+      "email": "b@mail",
+      "password": "$2a$10$p965gvOxuqu.WUNh93BygO5U926eq8eNYO1.NbEBckmKPStRXR0au",
+      "id": 5
+    },
+    {
+      "email": "d@mail",
+      "password": "$2a$10$YXjQV/9uaZiXJNjSbKP7/uNbc8LagS.vDtJVrjVRgVqsutMZgyj/i",
+      "id": 6
+    },
+    {
+      "email": "e@mail",
+      "password": "$2a$10$YETSktKWXTEEIaLNHUkb7OsXTiWjfLUxgTlJqJnenPJTBf1uLVWiS",
+      "id": 7
+    },
+    {
+      "email": "f@mail",
+      "password": "$2a$10$.fFr580lcI0rSkjf1EDJoOHIj2ks2WbEQE6Vu84Nq/uSE.ZWHz.6K",
+      "id": 8
+    },
+    {
+      "email": "p@mail",
+      "password": "$2a$10$6KZqvT9YONSVJo73a5bnIeubqLEIKU6OD1rIWBWclAGeOhuv8pP86",
+      "id": 9
+    },
+    {
+      "email": "n@mail",
+      "password": "$2a$10$0L3PSaOOEuCeTzfnkuq0muVWViQdqKlQV7w133B/Vs6FEdb.qE43e",
+      "id": 10
+    },
+    {
+      "email": "i@mail",
+      "password": "$2a$10$DjIogE13zmNKcE.oaz.NHuvdkPgaTHIP4b0Q0mO1HtHdQ1SPeTYjG",
+      "id": 11
+    },
+    {
+      "email": "a@maill",
+      "password": "$2a$10$aMTHGRqBDfx1eBKHPqbsc.IjRmDjmqW/oKHG84Q4J.cgnrg68kDmi",
+      "id": 12
     }
-  ]
+  ],
+  "tweets": [
+    {
+      "userId": "12",
+      "content": "test1",
+      "creationTime": 1741166541661,
+      "id": 1
+    },
+    {
+      "userId": "12",
+      "content": "test2",
+      "creationTime": 1741166544372,
+      "id": 2
+    },
+    {
+      "userId": "12",
+      "content": "test",
+      "creationTime": 1741182551974,
+      "id": 6
+    },
+    {
+      "userId": "12",
+      "content": "toto7qd",
+      "creationTime": 1741187308068,
+      "id": 7
+    }
+  ],
+  "likes": []
 }

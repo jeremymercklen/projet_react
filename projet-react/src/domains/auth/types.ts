@@ -1,5 +1,15 @@
-export type AuthResponse = {
+export type AuthLoginResponse = {
     accessToken: string,
+    email: string,
+    id: number
+}
+
+export type AuthSignupResponse = {
+    accessToken: string,
+    user: User
+}
+
+export type User = {
     email: string,
     id: number
 }
