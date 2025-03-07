@@ -57,10 +57,6 @@ function DrawerResponsive({ children }: any) {
                                 <FaUser style={{ marginRight: 10 }} />
                                 Profile
                             </ListItemButton>
-                            <ListItemButton sx={{ display: 'flex', alignItems: 'center' }}>
-                                <FaBell style={{ marginRight: 10 }} />
-                                Notifications
-                            </ListItemButton>
                         </List>
                         <Divider />
                         {/* Disconnect Button */}

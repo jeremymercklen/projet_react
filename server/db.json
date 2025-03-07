@@ -121,17 +121,17 @@
     {
       "tweetId": 9,
       "userId": 12,
-      "id": 6
-    },
-    {
-      "tweetId": 9,
-      "userId": 12,
       "id": 8
     },
     {
       "tweetId": 11,
       "userId": 12,
       "id": 9
+    },
+    {
+      "tweetId": 9,
+      "userId": 12,
+      "id": 10
     }
   ]
 }
