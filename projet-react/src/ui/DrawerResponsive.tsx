@@ -1,6 +1,6 @@
 import { Drawer, Divider, IconButton, List, ListItemButton, Toolbar, useMediaQuery, useTheme, Box } from '@mui/material';
 import { Fragment, useState } from 'react';
-import { FaBell, FaHome, FaList, FaPowerOff, FaUser } from 'react-icons/fa';
+import { FaHome, FaList, FaPowerOff, FaUser } from 'react-icons/fa';
 import { disconnect, getIdWithToken, getToken } from '../domains/auth/service';
 import { useNavigate } from 'react-router-dom';
 
