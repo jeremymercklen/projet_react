@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -34,6 +34,11 @@ const EditTweetModal: React.FC<TweetProps> = ({ tweet }) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const dispatch = useAppDispatch();
+
+    useEffect(() => {
+        setContent(tweet.content)
+        setOpen(false)
+    }, [tweet])
 
     return (
         <Fragment>

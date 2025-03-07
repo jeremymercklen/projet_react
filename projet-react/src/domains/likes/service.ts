@@ -2,20 +2,28 @@ import { toast } from "react-toastify";
 import likesAPIInstance from "./api";
 import { Like } from "./types";
 import { getIdWithToken, getToken } from "../auth/service";
+import { Tweet } from "../tweets/types";
 
 export async function getLikesInAPI(): Promise<Like[]> {
     return await likesAPIInstance.get('/likes');
 }
 
-export async function createLikeInAPI(tweetId : number, userId : number): Promise<Like> {
+export async function createLikeInAPI(tweet : Tweet, userId : number): Promise<Like | void> {
+    if(tweet.likes.find(t => t.userId===userId)) {
+        return
+    }
     return await likesAPIInstance.post('/likes', {
-        tweetId,
+        tweetId: tweet.id,
         userId
     });
 }
 
-export async function deleteLikeInAPI(likeId: number) {
-    await likesAPIInstance.delete(`/likes/${likeId}`);
+export async function deleteLikeInAPI(likes: Like[]) {
+    const userId : number = getIdWithToken(getToken());
+    const like = likes.find( (like) => like.userId === userId);
+    if(like) {
+        await likesAPIInstance.delete(`/likes/${like.id}`)
+    };
 }
 
 likesAPIInstance.interceptors.response.use(function (response) {

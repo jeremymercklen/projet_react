@@ -9,7 +9,6 @@ function DrawerResponsive({ children }: any) {
     const navigate = useNavigate();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Détecte les écrans petits
-    const isDesktop = useMediaQuery(theme.breakpoints.up('md')); // Détecte les écrans grands
 
     const toggleDrawer = () => {
         setOpenDrawer(!openDrawer);

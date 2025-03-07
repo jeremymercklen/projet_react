@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AlreadyAuthGuard from '../domains/auth/AlreadyAuthGuard';
 import DarkModeButton from '../ui/DarkModeButton';
-import { setIsConnected } from '../domains/auth/slice';
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -98,7 +97,7 @@ function Login() {
                             </Button>
                         </Box>
                         <Box>
-                            <Checkbox value={isStayConnected} onChange={() => setIsConnected(!isStayConnected)} />Stay connected ?
+                            <Checkbox value={isStayConnected} onChange={() => setStayConnected(!isStayConnected)} />Stay connected ?
                         </Box>
                     </form>
                 </Box>

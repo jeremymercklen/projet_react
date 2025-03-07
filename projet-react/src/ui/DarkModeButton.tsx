@@ -1,4 +1,4 @@
-import { Box, Button, useTheme, useMediaQuery } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { FaMoon, FaSun } from 'react-icons/fa';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeTheme } from './slice';
@@ -6,9 +6,6 @@ import { changeTheme } from './slice';
 function DarkModeButton() {
     const dispatch = useDispatch();
     const isDarkMode = useSelector((state: any) => state.theme.isDarkMode);
-
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Pour afficher le bouton seulement sur les petits écrans
 
     return (
         <Box

@@ -5,8 +5,7 @@ import Modal from '@mui/material/Modal';
 import { getUserEmailById } from '../../auth/service';
 import { useNavigate } from 'react-router-dom';
 import { getFollowers } from '../services';
-import { Typography, Avatar, List, ListItem, ListItemText, Divider } from '@mui/material';
-import { FaRegUserCircle } from 'react-icons/fa'; // Icone utilisateur
+import { Typography, List, ListItem, ListItemText, Divider } from '@mui/material';
 
 const style = {
     position: 'absolute',

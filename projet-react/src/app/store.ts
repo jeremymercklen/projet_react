@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit'
 import connectionSlice from '../domains/auth/slice'
 import themeSlice from '../ui/slice'
 import tweetsSlice from '../domains/tweets/slice'
-import likesSlice from '../domains/likes/slice'
 import type { TypedUseSelectorHook } from 'react-redux'
 import { useDispatch, useSelector, useStore } from 'react-redux'
 
@@ -10,8 +9,7 @@ const store = configureStore({
     reducer: {
         connection: connectionSlice,
         theme: themeSlice,
-        tweets: tweetsSlice,
-        likes: likesSlice
+        tweets: tweetsSlice
     }
 });
 

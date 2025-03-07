@@ -47,14 +47,12 @@ export async function getFollowers() {
     return user.followers;
 }
 
-export async function getFollowings() {
-    const currentUserId = getIdWithToken(getToken());
-    const user: User =  await usersAPIInstance.get(`/users/${currentUserId}`)
+export async function getFollowings(userId: number) {
+    const user: User =  await usersAPIInstance.get(`/users/${userId}`)
     return user.followings;
 }
 
 export async function getNbFollowers(userId: number) {
-    const currentUserId = getIdWithToken(getToken());
     const user: User =  await usersAPIInstance.get(`/users/${userId}`)
     return user.followers.length;
 }

@@ -1,4 +1,4 @@
-import { Box, Button, TextField, Typography } from '@mui/material'
+import { Box, Button, TextField } from '@mui/material'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { handleSignupSubmit } from '../domains/auth/service';
@@ -82,7 +82,7 @@ function Signup() {
                                 onChange={(e) => setPassword(e.target.value)}
                                 sx={{ borderRadius: 3 }}
                                 fullWidth
-                                error={!!error} // Show error styling if there is an error
+                                error={!!error}
                                 helperText={error && error.includes('Password') ? error : ''}
                             />
                             <TextField
@@ -93,7 +93,7 @@ function Signup() {
                                 onChange={(e) => setPasswordConfirmation(e.target.value)}
                                 sx={{ borderRadius: 3 }}
                                 fullWidth
-                                error={!!error} // Show error styling if there is an error
+                                error={!!error}
                                 helperText={error && error.includes('Passwords') ? error : ''}
                             />
                         </Box>

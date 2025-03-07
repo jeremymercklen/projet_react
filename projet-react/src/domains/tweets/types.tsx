@@ -1,12 +1,15 @@
+import { Like } from "../likes/types"
+
 export type Tweet = {
     userId: number,
     content: string,
     creationTime: number,
-    id: number
+    id: number,
+    likes: Like[]
 }
 
-export type Like = {
-    userId: number,
-    tweetId: number,
-    id: number
-}
+export enum Filter {
+    recent,
+    trending,
+    following
+};

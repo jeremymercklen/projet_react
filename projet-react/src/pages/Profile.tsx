@@ -2,7 +2,7 @@ import { Fragment, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import DrawerResponsive from '../ui/DrawerResponsive';
 import { getUserEmailById } from '../domains/auth/service';
-import { Button, Typography, Divider, IconButton, Grid } from '@mui/material';
+import { Typography, Divider, Grid } from '@mui/material';
 import { Box } from '@mui/system';
 import { useAppDispatch, useAppSelector } from '../app/store';
 import { Tweet } from '../domains/tweets/types';
@@ -14,7 +14,6 @@ import { getNbFollowers, getNbFollowings, isSameUser } from '../domains/users/se
 import FollowButton from '../domains/users/components/FollowButton';
 import FollowersModal from '../domains/users/components/FollowersModal';
 import FollowingsModal from '../domains/users/components/FollowingsModal';
-import { FaCog } from 'react-icons/fa';
 
 function Profile() {
     const tweets: Tweet[] = useAppSelector((state: any) => state.tweets.tweets);
@@ -105,10 +104,9 @@ function Profile() {
 
                 <Divider sx={{ width: '100%', margin: '20px 0' }} />
 
-                {/* Mapping and displaying user tweets */}
                 <Grid container spacing={3}>
                     {tweets.filter((tweet) => tweet.userId === Number(id)).map((tweet, index) => (
-                        <Grid item xs={12} sm={6} md={4} key={index}> {/* Responsive grid for tweets */}
+                        <Grid item xs={12} sm={6} md={4} key={index}>
                             <TweetItem tweet={tweet} />
                         </Grid>
                     ))}
