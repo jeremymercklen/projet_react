@@ -6,6 +6,7 @@ import { FaPlus } from 'react-icons/fa';
 import { TextField } from '@mui/material';
 import { createTweet } from '../slice';
 import { useAppDispatch } from '../../../app/store';
+import { toast } from 'react-toastify';
 
 const style = {
     position: 'absolute',
@@ -71,6 +72,7 @@ function CreateTweetModal() {
                                 handleClose();
                                 setContent('');
                             }
+                            toast.success("Tweet successfully created")
                         }}
                     >
                         <TextField
